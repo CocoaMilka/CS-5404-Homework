@@ -11,30 +11,30 @@ originalImage = imread("poss2.jpg");
     grayTrueColorImage = rgb2gray(trueColorImage);
     
     % Convert indexed image to gray
-    grayIndexedImage = ind2gray(indexedImage, map);
-
-% Create figure to display
-figure;
+    grayIndexedImage = ind2gray(indexedImage, cmap);
 
 % Display original and gray TRUECOLOR
-subplot(2, 2, 1);
+figure;
+subplot(1, 2, 1);
 imshow(trueColorImage);
 colorbar
 title('True Color Image');
 
-subplot(2, 2, 2);
+subplot(1, 2, 2);
 imshow(grayTrueColorImage);
 colorbar
 title('Gray True Color Image');
 
 % Display original and gray INDEXED
-subplot(2, 2, 3);
+figure;
+subplot(1, 2, 1);
 imagesc(indexedImage);
-%colormap(cmap)
+colormap(gca, cmap);  % Set the original colormap for the indexed image
 colorbar
 title('Indexed Image');
 
-subplot(2, 2, 4);
-imshow(grayIndexedImage);
+subplot(1, 2, 2);
+imagesc(grayIndexedImage);
+colormap(gca, gray);  % Set the colormap to grayscale for the gray indexed image
 colorbar
 title('Gray Indexed Image');

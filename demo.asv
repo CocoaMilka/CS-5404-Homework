@@ -1,0 +1,40 @@
+% CS 5404 HW4 Joshua Ghilino
+
+% Read images
+trueColorImage = imread("poss1.jpg");
+originalImage = imread("poss2.jpg");
+
+% Create a custom color map with 3 colors: Red, Green, Blue
+colorMap = [1 0 0; 0 1 0; 0 0 1];  % Red, Green, Blue
+
+% Convert the image to an indexed image with the custom color map
+[indexedImage, map] = rgb2ind(originalImage, colorMap, 'nodither');
+
+% Convert indexed image to RGB using the color map
+rgbImage = ind2rgb(quantizedImage, colorMap);
+
+% Convert true color image to gray
+grayTrueColorImage = rgb2gray(trueColorImage);
+
+% Display original and gray
+figure;
+subplot(1, 2, 1);
+imshow(trueColorImage);
+title('True Color Image');
+
+subplot(1, 2, 2);
+imshow(grayTrueColorImage);
+title('Gray True Color Image');
+
+% Convert indexed image to gray
+grayIndexedImage = ind2gray(rgbImage, gray(256));
+
+% Display original and gray
+figure;
+subplot(1, 2, 1);
+imshow(indexedImage);
+title('Indexed Image');
+
+subplot(1, 2, 2);
+imshow(grayIndexedImage);
+title('Gray Indexed Image');
